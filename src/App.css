@@ -1,0 +1,167 @@
+/* Page shell: full-screen background with subtle brand colors and the logo watermark. */
+.maintenance-bg {
+  min-height: 100vh;
+  width: 100%;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(15, 241, 206, 0.18), transparent 28%),
+    radial-gradient(circle at 82% 72%, rgba(231, 200, 115, 0.16), transparent 30%),
+    linear-gradient(135deg, rgba(6, 9, 16, 0.92), rgba(12, 16, 24, 0.82)),
+    url('/logo7.png') center/auto 54% no-repeat;
+  background-attachment: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Decorative grid overlay behind the content card. */
+.maintenance-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, black, transparent 72%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Centers the maintenance card and darkens the background for readability. */
+.maintenance-overlay {
+  width: 100%;
+  min-height: 100vh;
+  background: rgba(5, 7, 12, 0.36);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 18px;
+}
+
+/* Glass-style card that holds the logo and text. */
+.maintenance-content {
+  text-align: center;
+  color: #f7ead0;
+  width: min(680px, 100%);
+  padding: clamp(2rem, 5vw, 4rem);
+  border: 1px solid rgba(231, 200, 115, 0.26);
+  border-radius: 8px;
+  background: linear-gradient(145deg, rgba(11, 14, 21, 0.78), rgba(17, 21, 31, 0.58));
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.52), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+/* Square logo frame. Increase this width to make the logo area larger. */
+.maintenance-logo-frame {
+  width: clamp(240px, 34vw, 380px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 1.35rem;
+  border: 1px solid rgba(231, 200, 115, 0.34);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    rgba(6, 9, 16, 0.54);
+  box-shadow:
+    0 18px 46px rgba(0, 0, 0, 0.34),
+    0 0 36px rgba(15, 241, 206, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+/* Actual logo image inside the frame. */
+.maintenance-logo {
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.48));
+}
+
+/* Small TREADIX label above the headline. */
+.maintenance-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #0ff1ce;
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.3em;
+  margin-bottom: 1.15rem;
+  text-transform: uppercase;
+}
+
+/* Thin lines on both sides of the TREADIX label. */
+.maintenance-kicker::before,
+.maintenance-kicker::after {
+  content: '';
+  width: 34px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, currentColor);
+}
+
+.maintenance-kicker::after {
+  background: linear-gradient(90deg, currentColor, transparent);
+}
+
+/* Main headline text. */
+.maintenance-content h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.45rem, 3.4vw, 2.7rem);
+  font-weight: 600;
+  line-height: 1.05;
+  margin-bottom: 1.35rem;
+  color: #f8e2ad;
+  text-wrap: balance;
+  text-shadow: 0 16px 46px rgba(0, 0, 0, 0.65);
+}
+
+/* Container for the status pill below the headline. */
+.maintenance-status {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 2rem;
+}
+
+/* Status pill styling. */
+.maintenance-status span {
+  border: 1px solid rgba(15, 241, 206, 0.24);
+  border-radius: 999px;
+  color: #d8fff8;
+  background: rgba(15, 241, 206, 0.08);
+  padding: 0.86rem 1.2rem;
+  font-size: 0.98rem;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Mobile adjustments for smaller screens. */
+@media (max-width: 600px) {
+  .maintenance-bg {
+    background-size: auto 42%;
+  }
+
+  .maintenance-content {
+    padding: 2rem 1.15rem;
+  }
+
+  .maintenance-logo-frame {
+    width: 210px;
+    margin-bottom: 1.1rem;
+  }
+
+  .maintenance-kicker {
+    letter-spacing: 0.18em;
+  }
+
+  .maintenance-kicker::before,
+  .maintenance-kicker::after {
+    width: 22px;
+  }
+}

@@ -1,0 +1,13 @@
+/* Global reset so spacing is predictable across browsers. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base page colors and fallback font. App.css overrides the app font where needed. */
+body {
+  background: #0b0f19;
+  color: white;
+  font-family: Arial, sans-serif;
+}
